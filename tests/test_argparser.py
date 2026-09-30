@@ -20,7 +20,7 @@ def isolate_user_config(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None
 
 @pytest.mark.parametrize("args", [["--help"], ["rename", "--help"]])
 def test_help_does_not_load_config(args: list[str]) -> None:
-    with patch("yafr.cli.argparser.load_config") as load:
+    with patch("yafr.app.load_config") as load:
         result = runner.invoke(cli, args)
     assert result.exit_code == 0
     assert "Usage:" in result.stdout
@@ -48,7 +48,7 @@ def test_default_settings_and_preview_do_not_change_files(tmp_path: Path) -> Non
     assert "Pattern: {n}" in result.stdout
     assert "Start: 1" in result.stdout
     assert "Recursive: False" in result.stdout
-    assert "Preview only: the engine is not implemented." in result.stdout
+    assert "Preview only. Use --apply to make changes." in result.stdout
     assert result.stderr == ""
     assert list(source.iterdir()) == [original]
     assert original.read_bytes() == b"unchanged content"
@@ -118,7 +118,7 @@ def test_relative_source_is_resolved(
     ],
 )
 def test_bad_arguments_fail_before_loading_config(args: list[str]) -> None:
-    with patch("yafr.cli.argparser.load_config") as load:
+    with patch("yafr.app.load_config") as load:
         result = runner.invoke(cli, args)
     assert result.exit_code == 2
     assert result.stderr
@@ -131,7 +131,7 @@ def test_source_must_be_an_existing_directory(tmp_path: Path, is_file: bool) -> 
     source = tmp_path / "source"
     if is_file:
         source.write_text("file", encoding="utf-8")
-    with patch("yafr.cli.argparser.load_config") as load:
+    with patch("yafr.app.load_config") as load:
         result = runner.invoke(cli, ["rename", str(source)])
     assert result.exit_code == 2
     assert result.stderr
@@ -160,9 +160,7 @@ def test_invalid_pattern_goes_through_config_validation(tmp_path: Path) -> None:
 
 
 def test_config_error_is_displayed_without_traceback(tmp_path: Path) -> None:
-    with patch(
-        "yafr.cli.argparser.load_config", side_effect=ConfigError("Access denied")
-    ):
+    with patch("yafr.app.load_config", side_effect=ConfigError("Access denied")):
         result = runner.invoke(cli, ["rename", str(tmp_path)])
     assert result.exit_code == 2
     assert result.stderr == "Access denied\n"

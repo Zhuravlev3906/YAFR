@@ -1,2 +1,4 @@
 def main() -> None:
-    print("Hello from yafr!")
+    from yafr.app import main as run
+
+    run()
