@@ -3,11 +3,29 @@ name = "yafr"
 version = "0.1.0"
 description = "A CLI tool for organizing files by extension and batch renaming."
 readme = "README.md"
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+authors = [{ name = "Zhuravlev3906" }]
+keywords = ["cli", "files", "organizer", "rename"]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+]
 requires-python = ">=3.12"
 dependencies = [
-    "pydantic",
+    "platformdirs>=4,<5",
+    "pydantic>=2.5,<3",
     "typer>=0.27.2",
 ]
+
+[project.urls]
+Repository = "https://github.com/Zhuravlev3906/YAFR"
+Issues = "https://github.com/Zhuravlev3906/YAFR/issues"
 
 [dependency-groups]
 dev = [
