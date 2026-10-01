@@ -1,6 +1,6 @@
 [project]
 name = "yafr"
-version = "0.1.0"
+version = "1.0.0"
 description = "A CLI tool for organizing files by extension and batch renaming."
 readme = "README.md"
 license = "GPL-3.0-only"

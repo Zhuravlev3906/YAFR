@@ -20,8 +20,8 @@ class ConfigValidatorTests(unittest.TestCase):
     def test_partial_config_uses_independent_defaults(self) -> None:
         first = Config.model_validate({"rename": {"start": 5}})
         second = Config.model_validate({})
-        first.sort.groups["images"].append("gif")
-        self.assertNotIn("gif", second.sort.groups["images"])
+        first.sort.groups["images"].append("test-only-extension")
+        self.assertNotIn("test-only-extension", second.sort.groups["images"])
         self.assertEqual(first.rename.start, 5)
         self.assertFalse(first.general.recursive)
         self.assertIsNone(first.sort.fallback)

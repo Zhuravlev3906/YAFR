@@ -3,6 +3,8 @@ from string import Formatter
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from yafr.config.defaults import default_sort_groups
+
 
 def _check_name(value: str) -> str:
     if not value.strip() or value in {".", ".."}:
@@ -24,14 +26,7 @@ class GeneralConfig(_ConfigModel):
 class SortConfig(_ConfigModel):
     output: str | None = None
     fallback: str | None = None
-    groups: dict[str, list[str]] = Field(
-        default_factory=lambda: {
-            "images": ["jpg", "jpeg", "png", "webp", "heic"],
-            "videos": ["mp4", "mkv", "mov"],
-            "documents": ["pdf", "txt", "docx"],
-            "archives": ["zip", "7z", "tar.gz"],
-        }
-    )
+    groups: dict[str, list[str]] = Field(default_factory=default_sort_groups)
 
     @field_validator("output")
     @classmethod
