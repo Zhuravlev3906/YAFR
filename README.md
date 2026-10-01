@@ -1,5 +1,7 @@
 <p align="center">
-  <a href="assets/banner.mp4">▶ YAFR — Yet Another File Renamer · Видеобаннер</a>
+  <a href="assets/banner.mp4">
+    <img src="assets/banner.gif" alt="YAFR — Yet Another File Renamer" width="960">
+  </a>
 </p>
 
 # YAFR
@@ -40,6 +42,8 @@ yafr --help
 
 В примерах `./downloads`, `./photos` и `./episodes` — существующие каталоги с вашими файлами. Команды без `--apply` только показывают план.
 
+Демонстрации ниже повторяются автоматически. Нажмите на анимацию, чтобы открыть исходное видео.
+
 ### Сортировка по расширениям
 
 Посмотрите, куда будут перемещены файлы, затем примените изменения:
@@ -59,7 +63,7 @@ downloads/                   downloads/
 └── backup.tar.gz            └── archives/backup.tar.gz
 ```
 
-[▶ Смотреть сортировку файлов](assets/sort.mp4)
+[![Сортировка файлов по категориям](assets/sort.gif)](assets/sort.mp4)
 
 Чтобы собрать файлы из вложенных каталогов в отдельной папке:
 
@@ -84,7 +88,7 @@ photo10.jpg   →  002.jpg
 photo11.png   →  003.png
 ```
 
-[▶ Смотреть пакетное переименование](assets/rename.mp4)
+[![Пакетное переименование фотографий](assets/rename.gif)](assets/rename.mp4)
 
 ### Нумерация сезонов и эпизодов
 
@@ -96,7 +100,7 @@ yafr rename ./episodes --ext mkv --pattern 'S{season:02d}E{episode:02d}' --seaso
 
 Результат: `S02E03.mkv`, `S02E04.mkv`, … Добавьте `--apply`, чтобы выполнить переименование.
 
-[▶ Смотреть нумерацию сезонов и эпизодов](assets/season.mp4)
+[![Нумерация сезонов и эпизодов](assets/season.gif)](assets/season.mp4)
 
 Файлы идут в естественном порядке: `file2` перед `file10`. Счётчик общий для всех выбранных расширений и, при рекурсии, вложенных каталогов. Без `--ext` выбираются все обнаруженные файлы.
 
